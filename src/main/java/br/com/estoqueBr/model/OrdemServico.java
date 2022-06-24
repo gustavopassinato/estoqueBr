@@ -13,7 +13,11 @@ public class OrdemServico {
 	private Integer id;
 
 	private String numero;
-	
+
+	public OrdemServico() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public OrdemServico(String numero) {
 		this.numero = numero;
 	}

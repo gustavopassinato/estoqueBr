@@ -13,6 +13,10 @@ public class Custeio {
 	private Integer id;
 
 	private String nome;
+	
+	public Custeio() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public Custeio(String nome) {
 		this.nome = nome;

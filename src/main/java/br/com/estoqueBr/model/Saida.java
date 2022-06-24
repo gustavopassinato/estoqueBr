@@ -32,18 +32,22 @@ public class Saida {
 	private Material material;
 
 	@ManyToOne
-	@JoinColumn(name = "id_destino_real")
-	private Destino destinoReal;
+	@JoinColumn(name = "id_nota")
+	private NotaFiscal notaFiscal;
 
 	@ManyToOne
-	@JoinColumn(name = "id_destino_previsto")
-	private Destino destinoPrevisto;
+	@JoinColumn(name = "id_destino")
+	private Destino destino;
 
-	public Saida(LocalDateTime dataRegistro, Destino destinoPrevisto, Destino destinoReal, Material material,
-			OrdemServico ordemServico, Integer quantidade) {
-		this.dataRegistro = dataRegistro;
-		this.destinoPrevisto = destinoPrevisto;
-		this.destinoReal = destinoReal;
+	public Saida() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Saida(Destino destino, Material material, OrdemServico ordemServico, Integer quantidade) {
+		this.dataRegistro = LocalDateTime.now();
+		this.ordemServico = ordemServico;
+		this.quantidade = quantidade;
+		this.destino = destino;
 		this.material = material;
 	}
 
@@ -95,20 +99,20 @@ public class Saida {
 		this.material = material;
 	}
 
-	public Destino getDestinoReal() {
-		return destinoReal;
+	public NotaFiscal getNotaFiscal() {
+		return notaFiscal;
 	}
 
-	public void setDestinoReal(Destino destinoReal) {
-		this.destinoReal = destinoReal;
+	public void setNotaFiscal(NotaFiscal notaFiscal) {
+		this.notaFiscal = notaFiscal;
 	}
 
-	public Destino getDestinoPrevisto() {
-		return destinoPrevisto;
+	public Destino getDestino() {
+		return destino;
 	}
 
-	public void setDestinoPrevisto(Destino destinoPrevisto) {
-		this.destinoPrevisto = destinoPrevisto;
+	public void setDestino(Destino destino) {
+		this.destino = destino;
 	}
 
 }

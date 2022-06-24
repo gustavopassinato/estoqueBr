@@ -16,12 +16,16 @@ public class UnidadeMedida {
 
 	private String nome;
 	private String abreviacao;
-	
+
+	public UnidadeMedida() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public UnidadeMedida(String nome, String abreviacao) {
 		this.nome = nome;
 		this.abreviacao = abreviacao;
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}

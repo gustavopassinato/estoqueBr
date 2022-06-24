@@ -7,13 +7,17 @@ import javax.persistence.Id;
 
 @Entity
 public class Fabricante {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private String nome;
-	
+
+	public Fabricante() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Fabricante(String nome) {
 		this.nome = nome;
 	}

@@ -1,5 +1,6 @@
 package br.com.estoqueBr.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,20 +19,24 @@ public class Material {
 	private String modelo;
 	private String descricao;
 
-	@ManyToOne
-	@JoinColumn(name="id_fabricante")
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_fabricante")
 	private Fabricante fabricante;
 
-	@ManyToOne
-	@JoinColumn(name="id_unid_med")
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_unid_med")
 	private UnidadeMedida unidMed;
-	
+
+	public Material() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Material(String nome, String modelo, Fabricante fabricante, UnidadeMedida unidMedida) {
 		this.nome = nome;
 		this.modelo = modelo;
 		this.fabricante = fabricante;
 		this.unidMed = unidMedida;
-		
+
 	}
 
 	public Integer getCodigo() {

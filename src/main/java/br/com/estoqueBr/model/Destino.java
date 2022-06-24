@@ -13,7 +13,10 @@ public class Destino {
 	private Integer id;
 
 	private String nome;
-	
+
+	public Destino() {
+	}
+
 	public Destino(String nome) {
 		this.nome = nome;
 	}

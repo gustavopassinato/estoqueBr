@@ -23,28 +23,29 @@ public class Entrada {
 	private LocalDateTime dataRegistro;
 
 	@ManyToOne
-	@JoinColumn(name="id_custeio")
-	private Custeio idCusteio;
+	@JoinColumn(name = "id_nota")
+	private NotaFiscal notaFiscal;
 
 	@ManyToOne
-	@JoinColumn(name="id_material")
+	@JoinColumn(name = "id_material")
 	private Material idMaterial;
 
-	@ManyToOne
-	@JoinColumn(name="id_destino")
-	private Destino idDestino;
+	public Entrada() {
+		// TODO Auto-generated constructor stub
+	}
 
-	@ManyToOne
-	@JoinColumn(name="id_fornecedor")
-	private Fornecedor idFornecedor;
-	
-	public Entrada(Integer quantidade, LocalDateTime dataRegistro, Custeio custeio, Material material, Destino destino, Fornecedor fornecedor) {
+	public Entrada(Integer quantidade, Material material) {
 		this.quantidade = quantidade;
-		this.dataRegistro = dataRegistro;
-		this.idCusteio = custeio;
+		this.dataRegistro = LocalDateTime.now();
 		this.idMaterial = material;
-		this.idDestino = destino;
-		this.idFornecedor = fornecedor;
+	}
+
+	public NotaFiscal getNotaFiscal() {
+		return notaFiscal;
+	}
+
+	public void setNotaFiscal(NotaFiscal notaFiscal) {
+		this.notaFiscal = notaFiscal;
 	}
 
 	public Integer getId() {
@@ -71,36 +72,12 @@ public class Entrada {
 		this.dataRegistro = dataRegistro;
 	}
 
-	public Custeio getIdCusteio() {
-		return idCusteio;
-	}
-
-	public void setIdCusteio(Custeio idCusteio) {
-		this.idCusteio = idCusteio;
-	}
-
 	public Material getIdMaterial() {
 		return idMaterial;
 	}
 
 	public void setIdMaterial(Material idMaterial) {
 		this.idMaterial = idMaterial;
-	}
-
-	public Destino getIdDestino() {
-		return idDestino;
-	}
-
-	public void setIdDestino(Destino idDestino) {
-		this.idDestino = idDestino;
-	}
-
-	public Fornecedor getIdFornecedor() {
-		return idFornecedor;
-	}
-
-	public void setIdFornecedor(Fornecedor idFornecedor) {
-		this.idFornecedor = idFornecedor;
 	}
 
 }

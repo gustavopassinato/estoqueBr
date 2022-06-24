@@ -14,7 +14,11 @@ public class Fornecedor {
 
 	private String nome;
 	private String cnpj;
-	
+
+	public Fornecedor() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Fornecedor(String nome, String cnpj) {
 		this.nome = nome;
 		this.cnpj = cnpj;
