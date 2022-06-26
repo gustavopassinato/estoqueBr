@@ -1,68 +1,63 @@
 package br.com.estoqueBr.service;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.estoqueBr.model.Custeio;
 import br.com.estoqueBr.model.Destino;
-import br.com.estoqueBr.model.Fabricante;
 import br.com.estoqueBr.model.Fornecedor;
 import br.com.estoqueBr.model.Material;
-import br.com.estoqueBr.model.UnidadeMedida;
-import br.com.estoqueBr.repository.EntradaRepository;
-import br.com.estoqueBr.repository.FabricanteRepository;
-import br.com.estoqueBr.repository.MaterialRepository;
-import br.com.estoqueBr.repository.NotaFiscalRepository;
-import br.com.estoqueBr.repository.SaidaRepository;
-import br.com.estoqueBr.repository.UnidadeMedidaRepository;
+import br.com.estoqueBr.model.form.MaterialForm;
+import br.com.estoqueBr.service.popula.Populador;
+import br.com.estoqueBr.service.register.CusteioRegistrationService;
+import br.com.estoqueBr.service.register.DestinoRegistrationService;
+import br.com.estoqueBr.service.register.FabricanteRegistrationService;
+import br.com.estoqueBr.service.register.FornecedorRegistrationService;
+import br.com.estoqueBr.service.register.MaterialRegisterService;
+import br.com.estoqueBr.service.register.NotaFiscalRegistrationService;
+import br.com.estoqueBr.service.register.OrdemServicoRegistrationService;
+import br.com.estoqueBr.service.register.UnidadeMedidaRegistrationService;
 
 @Service
 public class TesteService {
 
 	@Autowired
-	private EntradaRepository entradaRepository;
+	private CusteioRegistrationService custeioRegistrationService;
 
 	@Autowired
-	private MaterialRepository materialRepository;
+	private DestinoRegistrationService destinoRegistrationService;
 
 	@Autowired
-	private NotaFiscalRepository notaFiscalRepository;
+	private FabricanteRegistrationService fabricanteRegistrationService;
 
 	@Autowired
-	private SaidaRepository saidaRepository;
+	private FornecedorRegistrationService fornecedorRegistrationService;
 
 	@Autowired
-	private UnidadeMedidaRepository unidadeMedidaRepository;
+	private NotaFiscalRegistrationService notaFiscalRegistrationService;
 
 	@Autowired
-	private FabricanteRepository fabricanteRepository;
+	private OrdemServicoRegistrationService ordemServicoRegistrationService;
 
-	public void teste() {
+	@Autowired
+	private UnidadeMedidaRegistrationService unidadeMedidaRegistrationService;
+	
+	@Autowired
+	private MaterialRegisterService materialRegisterService;
 
-//		UnidadeMedida unidMed2 = new UnidadeMedida("unidade", "uni");
-//
-//		Fabricante fabricante1 = new Fabricante("ControlId2");
-//
-//		System.out.println(fabricante1.getId());
-//
-//		Material material1 = new Material("Placa controladora de acesso", "IdBox", fabricante1, unidMed2);
-//
-//		materialRepository.save(material1);
+	public void teste(Populador populador) {
+		Custeio custeio = custeioRegistrationService.createCusteio(populador.getCusteioNome());
+		Destino destino = destinoRegistrationService.create(populador.getDestinoNome());
+		Fornecedor fornecedor = fornecedorRegistrationService.create(populador.getFornecedorNome(),
+				populador.getFornecedorCnpj());
 
-//		
-//		Custeio custeio1 = new Custeio("Funape");
-//
-//		Destino destino1 = new Destino("Quadra 62");
-//		
-//		Fornecedor fornecedor1 = new Fornecedor("Qualiti", "16745974821746");
-		
-		Optional<Material> findById = materialRepository.findById(1l);
-		
-		Material material = findById.get();
-		
-		materialRepository.delete(material);
-
+		fabricanteRegistrationService.create(populador.getFabricanteNome());
+		notaFiscalRegistrationService.create(populador.getOrdemServicoNumero(), destino, fornecedor, custeio);
+		unidadeMedidaRegistrationService.create(populador.getUnidMedNome(), populador.getUnidMedAbrev());
+		ordemServicoRegistrationService.create(populador.getOrdemServicoNumero());
+	}
+	
+	public void cadastroMaterial(MaterialForm mateiralForm) {
+		materialRegisterService.create(mateiralForm);
 	}
 }

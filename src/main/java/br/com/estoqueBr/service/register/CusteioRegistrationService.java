@@ -18,5 +18,11 @@ public class CusteioRegistrationService {
 		
 		custeioRepository.save(custeio);
 	}
+	
+	public Custeio createCusteio(String nome) {
+		Custeio custeio = new Custeio(nome);
+		
+		return custeioRepository.save(custeio);
+	}
 
 }
