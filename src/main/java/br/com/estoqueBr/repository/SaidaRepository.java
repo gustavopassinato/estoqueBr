@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.com.estoqueBr.model.Saida;
 
 @Repository
-public interface SaidaRepository extends JpaRepository<Saida, Integer>{
+public interface SaidaRepository extends JpaRepository<Saida, Long>{
 
 }

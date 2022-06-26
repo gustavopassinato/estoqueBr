@@ -58,7 +58,7 @@ public class TesteService {
 //		
 //		Fornecedor fornecedor1 = new Fornecedor("Qualiti", "16745974821746");
 		
-		Optional<Material> findById = materialRepository.findById(1);
+		Optional<Material> findById = materialRepository.findById(1l);
 		
 		Material material = findById.get();
 		

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.com.estoqueBr.model.Entrada;
 
 @Repository
-public interface EntradaRepository extends JpaRepository<Entrada, Integer>{
+public interface EntradaRepository extends JpaRepository<Entrada, Long>{
 
 }

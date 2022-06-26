@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+</head>
+
+<body>
+    <header>
+        <div>Estoque Br</div>
+    </header>
+    <section>
+        <form th:object="${custeioForm}" action="/custeio/new" method="post">
+            <div class="mb-3">
+                <label class="form-label" for="nome">Nome do novo Centro de custeio</label>
+                <input th:field="*{nome}" class="form-control" placeholder="Digite aqui o nome">
+            </div>
+
+            <button class="btn btn-primary" type="submit">Cadastrar</button>
+        </form>
+    </section>
+</body>
+
+</html>

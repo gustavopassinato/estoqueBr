@@ -15,7 +15,7 @@ public class Entrada {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 
 	private Integer quantidade;
 
@@ -48,11 +48,11 @@ public class Entrada {
 		this.notaFiscal = notaFiscal;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
