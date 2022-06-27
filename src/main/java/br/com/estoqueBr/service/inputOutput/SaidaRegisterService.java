@@ -22,7 +22,7 @@ public class SaidaRegisterService {
 				localSeracherService.searchForDestino(saidaForm.getNomeDestino()),
 				localSeracherService.searchForMaterial(saidaForm.getCodigoMaterial()), 
 				localSeracherService.searchForOrdemServico(saidaForm.getNumeroOs()) , 
-				saidaForm.getQunatidade(),
+				saidaForm.getQuantidade(),
 				localSeracherService.searchForNotaFiscal(saidaForm.getNumNotaFiscal()));
 		
 		saidaRepository.save(saida);

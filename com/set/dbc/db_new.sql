@@ -18,7 +18,7 @@ USE `estoqueBr` ;
 -- Table `estoqueBr`.`custeio`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `estoqueBr`.`custeio` (
-  `id` BIGINT(20) UNSIGNED NOT NULL,
+  `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `nome_UNIQUE` (`nome` ASC))
@@ -30,7 +30,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `estoqueBr`.`destino`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `estoqueBr`.`destino` (
-  `id` BIGINT(20) UNSIGNED NOT NULL,
+  `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `nome_UNIQUE` (`nome` ASC))
@@ -42,7 +42,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `estoqueBr`.`fornecedor`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `estoqueBr`.`fornecedor` (
-  `id` BIGINT(20) UNSIGNED NOT NULL,
+  `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `cnpj` CHAR(14) NOT NULL,
   PRIMARY KEY (`id`),
@@ -56,7 +56,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `estoqueBr`.`nota_fiscal`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `estoqueBr`.`nota_fiscal` (
-  `id` BIGINT(20) UNSIGNED NOT NULL,
+  `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `numero` VARCHAR(30) NOT NULL,
   `id_destino` BIGINT(20) UNSIGNED NOT NULL,
   `id_fornecedor` BIGINT(20) UNSIGNED NOT NULL,
@@ -86,7 +86,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `estoqueBr`.`fabricante`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `estoqueBr`.`fabricante` (
-  `id` BIGINT(20) UNSIGNED NOT NULL,
+  `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `nome_UNIQUE` (`nome` ASC))
@@ -98,7 +98,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `estoqueBr`.`unidade_medida`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `estoqueBr`.`unidade_medida` (
-  `id` BIGINT(20) UNSIGNED NOT NULL,
+  `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(30) NOT NULL,
   `abreviacao` VARCHAR(5) NOT NULL,
   PRIMARY KEY (`id`))
@@ -110,7 +110,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `estoqueBr`.`material`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `estoqueBr`.`material` (
-  `codigo` BIGINT(20) UNSIGNED NOT NULL,
+  `codigo` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(60) NOT NULL,
   `modelo` VARCHAR(45) NOT NULL,
   `descricao` TEXT NULL DEFAULT NULL,
@@ -137,7 +137,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `estoqueBr`.`entrada`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `estoqueBr`.`entrada` (
-  `id` BIGINT(20) UNSIGNED NOT NULL,
+  `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `quantidade` INT UNSIGNED NOT NULL,
   `data_registro` DATETIME NOT NULL,
   `id_material` BIGINT(20) UNSIGNED NOT NULL,
@@ -163,7 +163,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `estoqueBr`.`ordem_servico`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `estoqueBr`.`ordem_servico` (
-  `id` BIGINT(20) UNSIGNED NOT NULL,
+  `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `numero` VARCHAR(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `numero_UNIQUE` (`numero` ASC))
@@ -175,7 +175,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `estoqueBr`.`saida`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `estoqueBr`.`saida` (
-  `id` BIGINT(20) UNSIGNED NOT NULL,
+  `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `quantidade` INT UNSIGNED NOT NULL,
   `descricao` TEXT NULL DEFAULT NULL,
   `data_registro` DATETIME NOT NULL,

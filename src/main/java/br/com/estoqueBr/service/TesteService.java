@@ -52,7 +52,7 @@ public class TesteService {
 				populador.getFornecedorCnpj());
 
 		fabricanteRegistrationService.create(populador.getFabricanteNome());
-		notaFiscalRegistrationService.create(populador.getOrdemServicoNumero(), destino, fornecedor, custeio);
+		notaFiscalRegistrationService.create(populador.getNotaNumero(), destino, fornecedor, custeio);
 		unidadeMedidaRegistrationService.create(populador.getUnidMedNome(), populador.getUnidMedAbrev());
 		ordemServicoRegistrationService.create(populador.getOrdemServicoNumero());
 	}

@@ -2,6 +2,7 @@ package br.com.estoqueBr.service.inputOutput;
 
 import java.util.Optional;
 
+import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,6 +50,7 @@ public class LocalSeracherService {
 	}
 
 	public NotaFiscal searchForNotaFiscal(String numeroNota) {
+		System.out.println(numeroNota);
 		Optional<NotaFiscal> notaFiscal = notaFiscalRepository.findByNumero(numeroNota);
 
 		if (notaFiscal.isEmpty()) {

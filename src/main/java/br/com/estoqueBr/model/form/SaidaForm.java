@@ -4,7 +4,7 @@ public class SaidaForm {
 	private String nomeDestino;
 	private Long codigoMaterial;
 	private String numeroOs;
-	private Integer qunatidade;
+	private Integer quantidade;
 	private String numNotaFiscal;
 
 	public String getNomeDestino() {
@@ -31,12 +31,12 @@ public class SaidaForm {
 		this.numeroOs = numeroOs;
 	}
 
-	public Integer getQunatidade() {
-		return qunatidade;
+	public Integer getQuantidade() {
+		return quantidade;
 	}
 
-	public void setQunatidade(Integer qunatidade) {
-		this.qunatidade = qunatidade;
+	public void setQuantidade(Integer qunatidade) {
+		this.quantidade = qunatidade;
 	}
 
 	public String getNumNotaFiscal() {
