@@ -34,7 +34,8 @@ public class Entrada {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Entrada(Integer quantidade, Material material) {
+	public Entrada(Integer quantidade, Material material, NotaFiscal notaFiscal) {
+		this.notaFiscal = notaFiscal;
 		this.quantidade = quantidade;
 		this.dataRegistro = LocalDateTime.now();
 		this.idMaterial = material;

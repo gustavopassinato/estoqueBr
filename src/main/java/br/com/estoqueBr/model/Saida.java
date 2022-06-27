@@ -43,7 +43,9 @@ public class Saida {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Saida(Destino destino, Material material, OrdemServico ordemServico, Integer quantidade) {
+	public Saida(Destino destino, Material material, OrdemServico ordemServico, Integer quantidade,
+			NotaFiscal notaFiscal) {
+		this.notaFiscal = notaFiscal;
 		this.dataRegistro = LocalDateTime.now();
 		this.ordemServico = ordemServico;
 		this.quantidade = quantidade;

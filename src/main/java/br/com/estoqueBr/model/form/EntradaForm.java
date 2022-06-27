@@ -4,6 +4,15 @@ public class EntradaForm {
 
 	private Integer quantidade;
 	private Long materialCodigo;
+	private String numeroNota;
+
+	public String getNumeroNota() {
+		return numeroNota;
+	}
+
+	public void setNumeroNota(String numeroNota) {
+		this.numeroNota = numeroNota;
+	}
 
 	public Integer getQuantidade() {
 		return quantidade;
