@@ -1,6 +1,4 @@
-package br.com.estoqueBr.controler;
-
-import javax.annotation.PostConstruct;
+package br.com.estoqueBr.controler.cadastro;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +14,7 @@ public class CusteioController {
 	@Autowired
 	private CusteioRegistrationService custeioRegistrationService;
 	
-	@GetMapping("/custeio")
+	@GetMapping("/cadastro/custeio")
 	public String custeioCadastroHome(CusteioForm custeioForm) {
 		return "cadastro/custeio";
 	}

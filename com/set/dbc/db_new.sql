@@ -212,6 +212,38 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
 
+-- -----------------------------------------------------
+-- Table `estoqueBr`.`estoque`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `estoqueBr`.`estoque` (
+  `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id_material` BIGINT(20) UNSIGNED NOT NULL,
+  `id_destino` BIGINT(20) UNSIGNED NOT NULL,
+  `desvio` BIT(1) NOT NULL,
+  `id_destino_original` BIGINT(20) UNSIGNED NULL,
+  `quantidade` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `estoque_fk0_idx` (`id_material` ASC),
+  INDEX `estoque_fk1_idx` (`id_destino` ASC),
+  INDEX `estoque_fk2_idx` (`id_destino_original` ASC),
+  CONSTRAINT `estoque_fk0`
+    FOREIGN KEY (`id_material`)
+    REFERENCES `estoqueBr`.`material` (`codigo`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+  CONSTRAINT `estoque_fk1`
+    FOREIGN KEY (`id_destino`)
+    REFERENCES `estoqueBr`.`destino` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+  CONSTRAINT `estoque_fk2`
+    FOREIGN KEY (`id_destino_original`)
+    REFERENCES `estoqueBr`.`destino` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

@@ -46,15 +46,15 @@ public class TesteService {
 	private MaterialRegisterService materialRegisterService;
 
 	public void teste(Populador populador) {
-		Custeio custeio = custeioRegistrationService.createCusteio(populador.getCusteioNome());
-		Destino destino = destinoRegistrationService.create(populador.getDestinoNome());
-		Fornecedor fornecedor = fornecedorRegistrationService.create(populador.getFornecedorNome(),
-				populador.getFornecedorCnpj());
-
-		fabricanteRegistrationService.create(populador.getFabricanteNome());
-		notaFiscalRegistrationService.create(populador.getNotaNumero(), destino, fornecedor, custeio);
-		unidadeMedidaRegistrationService.create(populador.getUnidMedNome(), populador.getUnidMedAbrev());
-		ordemServicoRegistrationService.create(populador.getOrdemServicoNumero());
+//		Custeio custeio = custeioRegistrationService.createCusteio(populador.getCusteioNome());
+//		Destino destino = destinoRegistrationService.create(populador.getDestinoNome());
+//		Fornecedor fornecedor = fornecedorRegistrationService.create(populador.getFornecedorNome(),
+//				populador.getFornecedorCnpj());
+//
+//		fabricanteRegistrationService.create(populador.getFabricanteNome());
+//		notaFiscalRegistrationService.create(populador.getNotaNumero(), destino, fornecedor, custeio);
+//		unidadeMedidaRegistrationService.create(populador.getUnidMedNome(), populador.getUnidMedAbrev());
+//		ordemServicoRegistrationService.create(populador.getOrdemServicoNumero());
 	}
 	
 	public void cadastroMaterial(MaterialForm mateiralForm) {

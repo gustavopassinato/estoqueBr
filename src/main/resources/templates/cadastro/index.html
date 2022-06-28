@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head th:replace="~{com :: head('Cadastro')}"></head>
+<body>
+    <header>
+        <div th:replace="~{com :: logo}"></div>
+        <div th:replace="~{com :: menu-sup}"></div>
+    </header>
+    <section>
+        <div class="container">
+            <div th:replace="~{com :: baner('Cadastro')}"></div>
+
+            <div class="row row-cols-2">
+                <div class="col">
+                    <div class="card-body mb-3">
+                        <a th:href="@{/cadastro/custeio}">Novo Centro de Custeio</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card-body mb-3">
+                        <a th:href="@{/cadastro/destino}">Novo destino de material</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card-body mb-3">
+                        <a th:href="@{/cadastro/fabricante}">Novo fabricante</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card-body mb-3">
+                        <a th:href="@{/cadastro/fornecedor}">Novo fornecedor</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card-body mb-3">
+                        <a th:href="@{/cadastro/material}">Novo material</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card-body mb-3">
+                        <a th:href="@{/cadastro/notaFiscal}">Nova nota fiscal</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card-body mb-3">
+                        <a th:href="@{/cadastro/ordemServico}">Nova ordem de servico</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card-body mb-3">
+                        <a th:href="@{/cadastro/unidadeMedida}">Nova unidade de medida</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

@@ -7,8 +7,8 @@
     </header>
     <section>
         <div class="container">
-            <div th:replace="~{com :: baner('Novo centro de custeio')}"></div>
-            <form th:object="${custeioForm}" th:action="@{/cadastro/custeio/novo}" method="post">
+            <div th:replace="~{com :: baner('Novo destino de material')}"></div>
+            <form th:object="${destinoForm}" th:action="@{/cadastro/destino/novo}" method="post">
                 <label class="form-label" for="nome">Nome</label>
                 <input th:field="*{nome}" type="text" class="form-control">
 
