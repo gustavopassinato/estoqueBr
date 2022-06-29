@@ -8,7 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import br.com.estoqueBr.model.form.DestinoForm;
+import br.com.estoqueBr.model.form.DestinoDto;
 import br.com.estoqueBr.service.register.DestinoRegistrationService;
 
 @Controller
@@ -18,19 +18,19 @@ public class DestionoController {
 	private DestinoRegistrationService destinoRegistrationService;
 	
 	@GetMapping("/cadastro/destino")
-	public String destinoCadastroHome(DestinoForm destinoForm) {
+	public String destinoCadastroHome(DestinoDto destinoDto) {
 		return "cadastro/destino";
 	}
 	
 	@PostMapping("/cadastro/destino/novo")
-	public String destinoCadastroNovo(@Valid DestinoForm destinoForm, BindingResult result) {
+	public String destinoCadastroNovo(@Valid DestinoDto detinoDto, BindingResult result) {
 		
 		if(result.hasErrors()) {
 			return "cadastro/destino";
 		}
 		
-		destinoRegistrationService.create(destinoForm);
+		destinoRegistrationService.create(detinoDto);
 		
-		return "cadastro/index";
+		return "redirect:/cadastro";
 	}
 }

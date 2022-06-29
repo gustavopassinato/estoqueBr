@@ -2,9 +2,9 @@ package br.com.estoqueBr.model.form;
 
 import javax.validation.constraints.NotBlank;
 
-public class DestinoForm {
+public class FabricanteDto {
 	
-	@NotBlank
+	@NotBlank(message = "O nome do fabricante não pode ser vazio!")
 	private String nome;
 
 	public String getNome() {
@@ -14,4 +14,5 @@ public class DestinoForm {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 }

@@ -1,6 +1,6 @@
 package br.com.estoqueBr.model.form;
 
-public class EntradaForm {
+public class EntradaDto {
 
 	private Integer quantidade;
 	private Long materialCodigo;

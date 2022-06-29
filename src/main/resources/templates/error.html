@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head th:replace="~{com :: head('Cadastro')}"></head>
+<body>
+    <header>
+        <div th:replace="~{com :: logo}"></div>
+        <div th:replace="~{com :: menu-sup}"></div>
+    </header>
+
+    <div class="container">
+        <div  class="card">
+            <div th:object="erroDto : ${erroDto}">
+                <div class="card-header">
+                    Erro no cadastro da propriedade: <span th:utext="*{getErrorFieldContent}"></span>
+                </div>
+                <div class="card-body">
+                    Motivo: <span th:utext="*{getMessage}"></span>
+                </div>
+            </div>
+            <div>
+                <div>
+                    Clique para voltar ao menu principal de cadastro:
+                </div>
+                <a th:href="@{/cadastro}">
+                    <button class="btn btn-primary mt-2" type="button" onmouseover="">Voltar</button>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

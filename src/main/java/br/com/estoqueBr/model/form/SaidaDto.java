@@ -1,6 +1,6 @@
 package br.com.estoqueBr.model.form;
 
-public class SaidaForm {
+public class SaidaDto {
 	private String nomeDestino;
 	private Long codigoMaterial;
 	private String numeroOs;

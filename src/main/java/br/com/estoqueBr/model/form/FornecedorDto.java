@@ -1,8 +1,13 @@
 package br.com.estoqueBr.model.form;
 
-public class FornecedorForm {
+import javax.validation.constraints.NotEmpty;
 
+public class FornecedorDto {
+	
+	@NotEmpty(message = "O nome não pode ser vazio!")
 	private String nome;
+	
+	@NotEmpty(message = "O CNPJ não pode ser vazio!")
 	private String cnpj;
 
 	public String getNome() {

@@ -1,6 +1,6 @@
 package br.com.estoqueBr.model.form;
 
-public class MaterialForm {
+public class MaterialDto {
 	private String nome;
 	private String modelo;
 	private String fabricanteNome;

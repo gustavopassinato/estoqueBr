@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.estoqueBr.model.Saida;
-import br.com.estoqueBr.model.form.SaidaForm;
+import br.com.estoqueBr.model.form.SaidaDto;
 import br.com.estoqueBr.repository.SaidaRepository;
 
 @Service
@@ -16,7 +16,7 @@ public class SaidaRegisterService {
 	@Autowired
 	private LocalSeracherService localSeracherService;
 
-	public void create(SaidaForm saidaForm) {
+	public void create(SaidaDto saidaForm) {
 
 		Saida saida = new Saida(
 				localSeracherService.searchForDestino(saidaForm.getNomeDestino()),

@@ -1,7 +1,10 @@
 package br.com.estoqueBr.model.form;
 
-public class CusteioForm {
+import javax.validation.constraints.NotBlank;
 
+public class DestinoDto {
+	
+	@NotBlank(message = "O nome do destino não pode ser vazio!")
 	private String nome;
 
 	public String getNome() {
@@ -11,5 +14,4 @@ public class CusteioForm {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
 }
