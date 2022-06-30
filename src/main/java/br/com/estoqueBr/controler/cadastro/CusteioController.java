@@ -1,9 +1,11 @@
 package br.com.estoqueBr.controler.cadastro;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,8 +19,21 @@ public class CusteioController {
 	@Autowired
 	private CusteioRegistrationService custeioRegistrationService;
 	
+	@GetMapping("/cadastro/custeio/teste")
+	public String teste(HttpSession session) {
+		CusteioDto custeio = new CusteioDto();
+		custeio.setNome("Setando nome no contexto");
+		
+		session.setAttribute("custeio", custeio);
+		return "redirect:/cadastro/custeio";
+	}
+	
+	
+	
 	@GetMapping("/cadastro/custeio")
-	public String custeioCadastroHome(CusteioDto custeioDto) {
+	public String custeioCadastroHome(CusteioDto custeioDto, HttpSession session, Model model) {
+		CusteioDto custeioDto2 = (CusteioDto) session.getAttribute("custeio");
+		model.addAttribute("custeioDto", custeioDto2);
 		return "cadastro/custeio";
 	}
 	
