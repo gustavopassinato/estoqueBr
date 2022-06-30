@@ -1,10 +1,10 @@
-package br.com.estoqueBr.model.form;
+package br.com.estoqueBr.model.dto;
 
 import javax.validation.constraints.NotBlank;
 
-public class CusteioDto {
+public class FabricanteDto {
 	
-	@NotBlank(message = "O nome do produto não pode ser vazio!")
+	@NotBlank(message = "O nome do fabricante não pode ser vazio!")
 	private String nome;
 
 	public String getNome() {

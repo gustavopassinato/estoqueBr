@@ -1,11 +1,19 @@
-package br.com.estoqueBr.model.form;
+package br.com.estoqueBr.model.dto;
 
 public class SaidaDto {
 	private String nomeDestino;
 	private Long codigoMaterial;
 	private String numeroOs;
 	private Integer quantidade;
-	private String numNotaFiscal;
+	private Long codigoNota;
+
+	public Long getCodigoNota() {
+		return codigoNota;
+	}
+
+	public void setCodigoNota(Long codigoNota) {
+		this.codigoNota = codigoNota;
+	}
 
 	public String getNomeDestino() {
 		return nomeDestino;
@@ -37,14 +45,6 @@ public class SaidaDto {
 
 	public void setQuantidade(Integer qunatidade) {
 		this.quantidade = qunatidade;
-	}
-
-	public String getNumNotaFiscal() {
-		return numNotaFiscal;
-	}
-
-	public void setNumNotaFiscal(String numNotaFiscal) {
-		this.numNotaFiscal = numNotaFiscal;
 	}
 
 }

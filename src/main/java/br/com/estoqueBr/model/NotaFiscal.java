@@ -16,6 +16,8 @@ public class NotaFiscal {
 
 	private String numero;
 
+	private Integer serie;
+
 	@ManyToOne
 	@JoinColumn(name = "id_destino")
 	private Destino destino;
@@ -37,6 +39,14 @@ public class NotaFiscal {
 		this.destino = destino;
 		this.fornecedor = fornecedor;
 		this.custeio = custeio;
+	}
+
+	public Integer getSerie() {
+		return serie;
+	}
+
+	public void setSerie(Integer serie) {
+		this.serie = serie;
 	}
 
 	public Long getId() {

@@ -8,7 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import br.com.estoqueBr.model.form.CusteioDto;
+import br.com.estoqueBr.model.dto.CusteioDto;
 import br.com.estoqueBr.service.register.CusteioRegistrationService;
 
 @Controller

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.estoqueBr.model.Destino;
-import br.com.estoqueBr.model.form.DestinoDto;
+import br.com.estoqueBr.model.dto.DestinoDto;
 import br.com.estoqueBr.repository.DestinoRepository;
 
 @Service

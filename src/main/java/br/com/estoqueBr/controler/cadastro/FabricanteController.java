@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
-import br.com.estoqueBr.model.form.FabricanteDto;
+import br.com.estoqueBr.model.dto.FabricanteDto;
 import br.com.estoqueBr.service.register.FabricanteRegistrationService;
 
 @Controller
@@ -24,6 +25,7 @@ public class FabricanteController {
 
 	}
 	
+	@PostMapping("/cadastro/fabricante/novo")
 	public String fabricanteCadastroNovo(@Valid FabricanteDto fabricanteDto, BindingResult result) {
 		
 		if (result.hasErrors()) {

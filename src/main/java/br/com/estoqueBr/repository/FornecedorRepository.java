@@ -10,6 +10,6 @@ import br.com.estoqueBr.model.Fornecedor;
 @Repository
 public interface FornecedorRepository extends JpaRepository<Fornecedor, Long>{
 
-	Optional<Fornecedor> findByNome(String nome);
+	Optional<Fornecedor> findByCnpj(String nome);
 
 }

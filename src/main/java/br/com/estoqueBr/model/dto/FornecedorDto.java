@@ -1,4 +1,4 @@
-package br.com.estoqueBr.model.form;
+package br.com.estoqueBr.model.dto;
 
 import javax.validation.constraints.NotEmpty;
 

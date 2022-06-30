@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head th:replace="~{com :: head('Custeio')}"></head>
+<head th:replace="~{com :: head('Material')}"></head>
 <body>
     <header class="mb-2">
         <div  th:replace="~{com :: logo}"></div>
     </header>
     <section>
         <div class="container">
-            <div th:replace="~{com :: baner('Novo centro de custeio')}"></div>
+            <div th:replace="~{com :: baner('Novo material')}"></div>
             <form th:object="${custeioForm}" th:action="@{/cadastro/custeio/novo}" method="post">
                 <label class="form-label" for="nome">Nome</label>
                 <input th:field="*{nome}" type="text" class="form-control">

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.estoqueBr.model.Saida;
-import br.com.estoqueBr.model.form.SaidaDto;
+import br.com.estoqueBr.model.dto.SaidaDto;
 import br.com.estoqueBr.repository.SaidaRepository;
 
 @Service
@@ -23,7 +23,7 @@ public class SaidaRegisterService {
 				localSeracherService.searchForMaterial(saidaForm.getCodigoMaterial()), 
 				localSeracherService.searchForOrdemServico(saidaForm.getNumeroOs()) , 
 				saidaForm.getQuantidade(),
-				localSeracherService.searchForNotaFiscal(saidaForm.getNumNotaFiscal()));
+				localSeracherService.searchForNotaFiscal(saidaForm.getCodigoNota()));
 		
 		saidaRepository.save(saida);
 		

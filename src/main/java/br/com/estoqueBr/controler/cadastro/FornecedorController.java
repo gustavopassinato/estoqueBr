@@ -9,8 +9,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import br.com.estoqueBr.model.form.ErroDto;
-import br.com.estoqueBr.model.form.FornecedorDto;
+import br.com.estoqueBr.model.dto.ErroDto;
+import br.com.estoqueBr.model.dto.FornecedorDto;
 import br.com.estoqueBr.service.exceptions.FornecedorException;
 import br.com.estoqueBr.service.register.FornecedorRegistrationService;
 
@@ -38,11 +38,13 @@ public class FornecedorController {
 			
 			return "redirect:/cadastro";
 		} catch (FornecedorException e) {
-			ErroDto erro = new ErroDto(e.getMessage(), fornecedorDto.getCnpj());
+			String fieldErrorName = "Fornecedor";
+			
+			ErroDto erro = new ErroDto(e.getMessage(), fornecedorDto.getCnpj(), fieldErrorName);
 			
 			model.addAttribute("erroDto", erro);
 			
-			return "error";
+			return "erro";
 		}
 	}
 	

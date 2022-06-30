@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import br.com.estoqueBr.model.Fabricante;
 import br.com.estoqueBr.model.Material;
 import br.com.estoqueBr.model.UnidadeMedida;
-import br.com.estoqueBr.model.form.MaterialDto;
+import br.com.estoqueBr.model.dto.MaterialDto;
 import br.com.estoqueBr.repository.FabricanteRepository;
 import br.com.estoqueBr.repository.MaterialRepository;
 import br.com.estoqueBr.repository.UnidadeMedidaRepository;

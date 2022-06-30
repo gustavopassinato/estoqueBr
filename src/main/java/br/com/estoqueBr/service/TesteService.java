@@ -7,7 +7,7 @@ import br.com.estoqueBr.model.Custeio;
 import br.com.estoqueBr.model.Destino;
 import br.com.estoqueBr.model.Fornecedor;
 import br.com.estoqueBr.model.Material;
-import br.com.estoqueBr.model.form.MaterialDto;
+import br.com.estoqueBr.model.dto.MaterialDto;
 import br.com.estoqueBr.service.popula.Populador;
 import br.com.estoqueBr.service.register.CusteioRegistrationService;
 import br.com.estoqueBr.service.register.DestinoRegistrationService;
