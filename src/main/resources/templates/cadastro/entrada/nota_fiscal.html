@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head th:replace="~{com :: head('Nota Fiscal')}"></head>
+<body>
+    <header class="mb-2">
+        <div  th:replace="~{com :: logo}"></div>
+    </header>
+    <section>
+        <div class="container">
+            <div th:replace="~{com :: baner('Nova nota fiscal')}"></div>
+            <form th:object="${notaFiscalDto}" th:action="@{/cadastro/entrada/nota_fiscal}" method="post">
+                <div class="mb-3">
+                    <label class="form-label" for="idDestino">Digite o código do projeto/unidade de destino desta nota:</label>
+                    <input th:field="*{idDestino}" type="text" class="form-control">
+                    <div class="invalid-feedback" th:errors="*{idDestino}">
+                        Descrição do erro
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="idDestino">Digite o código do projeto/unidade de destino desta nota:</label>
+                    <input th:field="*{idDestino}" type="text" class="form-control">
+                    <div class="invalid-feedback" th:errors="*{idDestino}">
+                        Descrição do erro
+                    </div>
+                </div>
+
+
+                <button class="btn btn-primary mt-2" type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

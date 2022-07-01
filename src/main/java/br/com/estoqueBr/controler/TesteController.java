@@ -15,6 +15,8 @@ public class TesteController {
 		CusteioDto custeio = new CusteioDto();
 		custeio.setNome("Setando nome no contexto");
 		
+		
+		
 		session.setAttribute("custeio", custeio);
 		return "redirect:/cadastro/custeio";
 	}

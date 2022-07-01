@@ -1,5 +1,10 @@
 package br.com.estoqueBr.controler.cadastro;
 
+import java.util.EnumSet;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.stream.Stream;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -15,37 +20,43 @@ import br.com.estoqueBr.service.register.CusteioRegistrationService;
 
 @Controller
 public class CusteioController {
-	
+
 	@Autowired
 	private CusteioRegistrationService custeioRegistrationService;
-	
+
 	@GetMapping("/cadastro/custeio/teste")
 	public String teste(HttpSession session) {
 		CusteioDto custeio = new CusteioDto();
 		custeio.setNome("Setando nome no contexto");
-		
+
 		session.setAttribute("custeio", custeio);
 		return "redirect:/cadastro/custeio";
 	}
-	
-	
-	
+
 	@GetMapping("/cadastro/custeio")
 	public String custeioCadastroHome(CusteioDto custeioDto, HttpSession session, Model model) {
 		CusteioDto custeioDto2 = (CusteioDto) session.getAttribute("custeio");
 		model.addAttribute("custeioDto", custeioDto2);
+		
+		Enumeration<String> attributeNames = session.getAttributeNames();
+		
+		while (attributeNames.hasMoreElements()) {
+			System.out.println(attributeNames.nextElement());
+			
+		}
+		
 		return "cadastro/custeio";
 	}
-	
+
 	@PostMapping("/cadastro/custeio/novo")
 	public String custeioCadastroNovo(@Valid CusteioDto custeioDto, BindingResult result) {
-		
+
 		if (result.hasErrors()) {
 			return "cadastro/custeio";
 		}
-		
+
 		custeioRegistrationService.createCusteio(custeioDto);
-		
+
 		return "index";
 	}
 }

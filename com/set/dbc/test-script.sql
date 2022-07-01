@@ -116,3 +116,17 @@ CREATE TABLE `saida` (
  ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8
 
 
+CREATE TABLE `nota_fiscal` (
+   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+   `numero` varchar(30) NOT NULL,
+   `id_destino` bigint(20) unsigned NOT NULL,
+   `id_fornecedor` bigint(20) unsigned NOT NULL,
+   `id_custeio` bigint(20) unsigned NOT NULL,
+   PRIMARY KEY (`id`),
+   KEY `nota_fiscal_fk0_idx` (`id_destino`),
+   KEY `nota_fiscal_fk1_idx` (`id_fornecedor`),
+   KEY `nota_fiscal_fk2_idx` (`id_custeio`),
+   CONSTRAINT `nota_fiscal_fk0` FOREIGN KEY (`id_destino`) REFERENCES `destino` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+   CONSTRAINT `nota_fiscal_fk1` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+   CONSTRAINT `nota_fiscal_fk2` FOREIGN KEY (`id_custeio`) REFERENCES `custeio` (`id`)
+ ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8
