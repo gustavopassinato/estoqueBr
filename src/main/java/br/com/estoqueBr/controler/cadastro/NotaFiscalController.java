@@ -18,5 +18,6 @@ public class NotaFiscalController {
 	@PostMapping("/cadastro/entrada/nota_fiscal")
 	public String criaNotaFiscal(NotaFiscalDto notaFiscalDto) {
 		
+		return "";
 	}
 }

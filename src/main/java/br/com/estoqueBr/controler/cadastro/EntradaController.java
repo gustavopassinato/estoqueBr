@@ -16,8 +16,8 @@ import br.com.estoqueBr.model.NotaFiscal;
 import br.com.estoqueBr.model.dto.EntradaDto;
 import br.com.estoqueBr.model.dto.MaterialQuantidadeDto;
 import br.com.estoqueBr.model.dto.NotaFiscalDto;
+import br.com.estoqueBr.model.dto.NotaFiscalFiltroDto;
 import br.com.estoqueBr.model.dto.RegistroQuantidadeMaterialDto;
-import br.com.estoqueBr.repository.NotaFiscalRepository;
 import br.com.estoqueBr.service.register.NotaFiscalRegistrationService;
 
 @Controller
@@ -25,9 +25,34 @@ public class EntradaController {
 	
 	@Autowired
 	private NotaFiscalRegistrationService notaFiscalRegistrationService;
+
 	
 	@GetMapping("/cadastro/entrada/ini")
-	public String iniciaEntrada(NotaFiscalDto notaFiscalDto) {
+	public String iniciaEntrada(Model model) {
+		NotaFiscalDto notaFiscalDto = new NotaFiscalDto();
+		NotaFiscalFiltroDto notaFiscalFiltroDto = new NotaFiscalFiltroDto();
+		
+		List<NotaFiscalDto> procuraNotas = notaFiscalRegistrationService.procuraNotas();
+		List<NotaFiscalFiltroDto> filtro = notaFiscalRegistrationService.geraFiltroNotaFiscal();
+		
+		model.addAttribute("filtros", filtro);
+		model.addAttribute("notaFiscalDtoList", procuraNotas);
+		model.addAttribute("notaFiscalDto", notaFiscalDto);
+		model.addAttribute("notaFiscalFiltroDto", notaFiscalFiltroDto);
+		
+		return "cadastro/entrada/entrada_init";
+	}
+	
+	@PostMapping("/cadastro/entrada/ini/filtro")
+	public String iniciaEntradaFiltro(NotaFiscalDto notaFiscalDto, Model model, NotaFiscalFiltroDto notaFiscalFiltroDto) {
+		System.out.println(notaFiscalFiltroDto.getNomeFornecedor());
+		
+		List<NotaFiscalDto> procuraNotas = notaFiscalRegistrationService.procuraNotas(notaFiscalFiltroDto.getNomeFornecedor());
+		
+		List<NotaFiscalFiltroDto> filtro = notaFiscalRegistrationService.geraFiltroNotaFiscal();
+		
+		model.addAttribute("filtros", filtro);
+		model.addAttribute("notaFiscalDtoList", procuraNotas);
 		
 		return "cadastro/entrada/entrada_init";
 	}

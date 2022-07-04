@@ -2,6 +2,8 @@ package br.com.estoqueBr.model.dto;
 
 import javax.validation.constraints.NotEmpty;
 
+import br.com.estoqueBr.model.Fornecedor;
+
 public class FornecedorDto {
 	
 	@NotEmpty(message = "O nome não pode ser vazio!")
@@ -9,6 +11,14 @@ public class FornecedorDto {
 	
 	@NotEmpty(message = "O CNPJ não pode ser vazio!")
 	private String cnpj;
+	
+	public static FornecedorDto geraFornecedorDto(Fornecedor fornecedor) {
+		FornecedorDto fornecedorDto = new FornecedorDto();
+		fornecedorDto.setNome(fornecedor.getNome());
+		fornecedorDto.setCnpj(fornecedor.getCnpj());
+		
+		return fornecedorDto;
+	}
 
 	public String getNome() {
 		return nome;

@@ -1,5 +1,7 @@
 package br.com.estoqueBr.service.register;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +34,20 @@ public class FornecedorRegistrationService {
 		if (fornecedor.isPresent()) {
 			throw new FornecedorException("Fornecedor já cadastrado para CNPJ informado!");
 		}
+	}
+	
+	public List<Fornecedor> procuraTodosFornecedores(){
+
+		return fornecedorRepository.findAll();
+	}
+	
+	public Fornecedor procuraFornecedorPeloNome(String nomeFornecedor) {
+		Optional<Fornecedor> fornecedorOpt = fornecedorRepository.findByNome(nomeFornecedor);
+		
+		if(fornecedorOpt.isPresent()) {
+			return fornecedorOpt.get();
+		}
+		throw new FornecedorException("Fornecedor não encontrado!");
+		
 	}
 }
