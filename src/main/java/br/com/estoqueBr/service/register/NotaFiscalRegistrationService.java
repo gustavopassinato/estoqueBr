@@ -27,10 +27,23 @@ public class NotaFiscalRegistrationService {
 	@Autowired
 	private DestinoRegistrationService destinoRegistrationService;
 
-	public void create(String numero, Destino destino, Fornecedor fornecedor, Custeio custeio) {
-		NotaFiscal notaFiscal = new NotaFiscal(numero, destino, fornecedor, custeio);
+	@Autowired
+	private CusteioRegistrationService custeioRegistrationService;
 
-		notaFiscalRepository.save(notaFiscal);
+	public NotaFiscal create(NotaFiscalDto notaFiscalDto) {
+		Destino destino = destinoRegistrationService.procuraNome(notaFiscalDto.getNomeDestino());
+
+		Fornecedor fornecedor = fornecedorRegistrationService
+				.procuraFornecedorPeloNome(notaFiscalDto.getNomeFornecedor());
+
+		Custeio custeio = custeioRegistrationService.procuraPorNome(notaFiscalDto.getNomeCusteio());
+
+		NotaFiscal notaFiscal = new NotaFiscal(notaFiscalDto.getNumero(), notaFiscalDto.getSerie(), destino, fornecedor,
+				custeio);
+		
+		System.out.println("flag");
+
+		return notaFiscalRepository.save(notaFiscal);
 	}
 
 	public Optional<NotaFiscal> valida(NotaFiscalDto notaFiscalDto) {
@@ -52,9 +65,9 @@ public class NotaFiscalRegistrationService {
 
 		return notasDto;
 	}
-	
+
 	public List<NotaFiscalDto> procuraNotas(String nomeFornecedor) {
-		
+
 		Fornecedor fornecedor = fornecedorRegistrationService.procuraFornecedorPeloNome(nomeFornecedor);
 		List<NotaFiscalDto> notasDto = new ArrayList<NotaFiscalDto>();
 
@@ -79,4 +92,5 @@ public class NotaFiscalRegistrationService {
 		return filtroList;
 
 	}
+
 }

@@ -9,13 +9,13 @@ import br.com.estoqueBr.model.dto.NotaFiscalDto;
 @Controller
 public class NotaFiscalController {
 
-	@GetMapping("/cadastro/entrada/nota_fiscal")
+	@GetMapping("/cadastro/nota_fiscal")
 	public String preparaNotaFiscal(NotaFiscalDto notaFiscalDto) {
 		
 		return "cadastro/entrada/nota_fiscal";
 	}
 	
-	@PostMapping("/cadastro/entrada/nota_fiscal")
+	@PostMapping("/cadastro/nota_fiscal")
 	public String criaNotaFiscal(NotaFiscalDto notaFiscalDto) {
 		
 		return "";

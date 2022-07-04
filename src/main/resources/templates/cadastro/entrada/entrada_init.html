@@ -27,7 +27,7 @@
                         <div class="offcanvas-body">
                             <form th:object="${notaFiscalFiltroDto}" th:action="@{/cadastro/entrada/ini/filtro}" method="post">
                                 <select th:field="*{nomeFornecedor}" class="form-select" aria-label="Default select example">
-                                    <option value="" text="Selecione um fornecedor específico"></option>
+                                    <option value="">Selecione um fornecedor específico</option>
                                     <option th:each="filtro : ${filtros}" 
                                     th:value="${filtro.nomeFornecedor}"
                                     th:utext="${filtro.nomeFornecedor}">
@@ -46,16 +46,21 @@
                     <option selected>Selecione o código da nota fiscal</option>
                     <div th:each="nota : ${notaFiscalDtoList}">
                         <option th:value="${nota.id}">
-                            <span th:text="${nota.id}"></span>
+                            Código: <span th:text="${nota.id}"></span> / Número: <span th:text="${nota.numero}"></span>
                         </option>
                     </div>
                 </select>
 
 
                 <div class="d-flex justify-content-between">
-                    <button class="btn btn-primary mt-2" type="submit">Cadastrar</button>
+                    <div>
+                        <button class="btn btn-primary mt-2" style="margin: auto;" type="submit">Continuar</button>
+                        <a th:href="@{/cadastro/entrada/nota_fiscal}">
+                            <button class="btn btn-primary mt-2" type="button">Nova nota</button>
+                        </a>
+                    </div>
                     <a th:href="@{/cadastro}">
-                        <button class="btn btn-primary mt-2" type="button">Cancelar</button>
+                        <button class="btn btn-danger mt-2" type="button">Cancelar</button>
                     </a>
                 </div>
             </form>

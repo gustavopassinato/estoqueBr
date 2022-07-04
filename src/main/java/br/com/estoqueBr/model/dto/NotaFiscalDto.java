@@ -28,6 +28,7 @@ public class NotaFiscalDto {
 		NotaFiscalDto notaDto = new NotaFiscalDto();
 		
 		notaDto.setId(notaFiscal.getId());
+		notaDto.setNumero(notaFiscal.getNumero());
 		notaDto.setIdCusteio(notaFiscal.getCusteio().getId());
 		notaDto.setIdDestino(notaFiscal.getDestino().getId());
 		notaDto.setIdFornecedor(notaFiscal.getFornecedor().getId());

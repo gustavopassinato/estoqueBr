@@ -34,7 +34,8 @@ public class NotaFiscal {
 		// TODO Auto-generated constructor stub
 	}
 
-	public NotaFiscal(String numero, Destino destino, Fornecedor fornecedor, Custeio custeio) {
+	public NotaFiscal(String numero, Integer serie, Destino destino, Fornecedor fornecedor, Custeio custeio) {
+		this.serie = serie;
 		this.numero = numero;
 		this.destino = destino;
 		this.fornecedor = fornecedor;
