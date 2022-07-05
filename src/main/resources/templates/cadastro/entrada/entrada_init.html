@@ -41,7 +41,7 @@
                 </div>
 
             </div>
-            <form th:object="${notaFiscalDto}" th:action="@{/cadastro/entrada/quantidade}" method="post">
+            <form th:object="${notaFiscalDto}" th:action="@{/cadastro/entrada/nota_fiscal/select}" method="post">
                 <select class="form-select" aria-label="Default select example">
                     <option selected>Selecione o código da nota fiscal</option>
                     <div th:each="nota : ${notaFiscalDtoList}">

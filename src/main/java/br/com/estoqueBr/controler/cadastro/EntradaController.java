@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.management.RuntimeErrorException;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,6 +100,27 @@ public class EntradaController {
 		session.setAttribute("notaFiscalEntrada", notaFiscal);
 
 		return "redirect:/cadastro/entrada/ini";
+	}
+	
+	@PostMapping("/cadastro/entrada/nota_fiscal/select") 
+	public String recebeNotaSelecionada(NotaFiscalDto notaFiscalDto,  HttpSession session) {
+		
+		NotaFiscalDto notaDto = (NotaFiscalDto)session.getAttribute("notaFiscalEntrada");
+		
+		if(notaDto == null) {
+			if (notaFiscalDto == null) {
+				throw new NullPointerException("Nota fiscal nula");
+			}
+			session.setAttribute("notaFiscalEntrada", notaFiscalDto); 
+		}
+		
+		return "redirect:/cadastro/entrada/material";
+	}
+	
+	@GetMapping("/cadastro/entrada/material")
+	public String entradaDeMaterial() {
+		return "";
+		
 	}
 
 }
