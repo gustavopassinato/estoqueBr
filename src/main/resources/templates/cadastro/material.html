@@ -8,11 +8,71 @@
     <section>
         <div class="container">
             <div th:replace="~{com :: baner('Novo material')}"></div>
-            <form th:object="${custeioForm}" th:action="@{/cadastro/custeio/novo}" method="post">
-                <label class="form-label" for="nome">Nome</label>
-                <input th:field="*{nome}" type="text" class="form-control">
+            <form  class="was-validated" th:object="${materialDto}" th:action="@{/cadastro/custeio/novo}" method="post">
+                <div class="mb-3">
+                    <label class="form-label" for="nome">Nome</label>
+                    <input th:field="*{nome}" type="text" class="form-control is-invalid" required>
+                    <div class="invalid-feedback">
+                        Este campo é obrigatório!
+                    </div>
+                </div>
 
-                <button class="btn btn-primary mt-2" type="submit">Cadastrar</button>
+                <div class="mb-3">
+                    <label class="form-label" for="modelo">Modelo</label>
+                    <input th:field="*{modelo}" type="text" class="form-control is-invalid" required>
+                    <div class="invalid-feedback">
+                        Este campo é obrigatório!
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="descricao">Descrição</label>
+                    <input th:field="*{descricao}" type="text" class="form-control" >
+                </div>
+
+                <div class="mb-3">
+                        <label class="form-label" for="fabricanteNome">Fabricante</label>
+                        <select th:field="*{fabricanteNome}" class="form-select is-invalid" aria-label="Selecione o fabricante" required>
+                            <option value=""> Selecione o fabricante </option>
+                            <option th:each="fabricante : ${fabricantes}" 
+                            th:value="${fabricante.nome}"
+                            th:utext="${fabricante.nome}">
+                            </option>
+                        </select>
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <div class="invalid-feedback">
+                                    Este campo é obrigatório!
+                                </div>
+                            </div>
+                            <div>
+                                <a th:href="@{/cadastro/material/redirect/fabricante}">
+                                    <button class="btn btn-primary mt-2" type="button"> Novo fabricante</button>
+                                </a>
+                            </div>
+                        </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="unidadeMedidaNome">Unidade de Medida</label>
+                    <select th:field="*{unidadeMedidaNome}" class="form-select is-invalid" aria-label="Selecione a unidade de medida do material" required>
+                        <option value=""> Selecione a unidade de medida do material </option>
+                        <option th:each="unidadeMedida : ${unidadesMedida}" 
+                        th:value="${unidadeMedida.nome}"
+                        th:utext="${unidadeMedida.nome}">
+                        </option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Este campo é obrigatório!
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-primary mt-2" type="submit">Salvar</button>
+                    <a th:href="${onCancelUrl}">
+                        <button class="btn btn-primary mt-2" type="button">Cancelar</button>
+                    </a>
+                </div> 
             </form>
         </div>
     </section>

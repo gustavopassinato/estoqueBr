@@ -1,7 +1,5 @@
 package br.com.estoqueBr.controller.cadastro;
 
-import java.util.Enumeration;
-
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -12,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import br.com.estoqueBr.controller.SessionsConstants;
 import br.com.estoqueBr.model.dto.CusteioDto;
 import br.com.estoqueBr.service.register.CusteioRegistrationService;
 
@@ -21,39 +20,38 @@ public class CusteioController {
 	@Autowired
 	private CusteioRegistrationService custeioRegistrationService;
 
-	@GetMapping("/cadastro/custeio/teste")
-	public String teste(HttpSession session) {
-		CusteioDto custeio = new CusteioDto();
-		custeio.setNome("Setando nome no contexto");
-
-		session.setAttribute("custeio", custeio);
-		return "redirect:/cadastro/custeio";
-	}
-
 	@GetMapping("/cadastro/custeio")
 	public String custeioCadastroHome(CusteioDto custeioDto, HttpSession session, Model model) {
-		CusteioDto custeioDto2 = (CusteioDto) session.getAttribute("custeio");
-		model.addAttribute("custeioDto", custeioDto2);
+		String onCancelUrl = (String) session.getAttribute(SessionsConstants.ON_CANCEL_URL.toString());
+		session.removeAttribute(SessionsConstants.ON_CANCEL_URL.toString());
 		
-		Enumeration<String> attributeNames = session.getAttributeNames();
-		
-		while (attributeNames.hasMoreElements()) {
-			System.out.println(attributeNames.nextElement());
-			
+		if (onCancelUrl == null) {
+			 onCancelUrl = "/cadastro";
 		}
+
+		model.addAttribute("onCancelUrl", onCancelUrl);
 		
 		return "cadastro/custeio";
 	}
 
 	@PostMapping("/cadastro/custeio/novo")
-	public String custeioCadastroNovo(@Valid CusteioDto custeioDto, BindingResult result) {
-
+	public String custeioCadastroNovo(@Valid CusteioDto custeioDto, HttpSession session, BindingResult result) {
+		
 		if (result.hasErrors()) {
 			return "cadastro/custeio";
 		}
 
-		custeioRegistrationService.createCusteio(custeioDto);
+		custeioRegistrationService.create(custeioDto);
 
-		return "index";
+		String callBackUrl = (String) session.getAttribute(SessionsConstants.CALL_BACK_URL.toString());
+
+		if (callBackUrl == null) {
+
+			return "redirect:/cadastro";
+		}
+
+		session.setAttribute(SessionsConstants.CUSTEIO_DTO.toString(), custeioDto);
+
+		return String.format("redirect:%s", callBackUrl);
 	}
 }

@@ -40,8 +40,6 @@ public class NotaFiscalRegistrationService {
 
 		NotaFiscal notaFiscal = new NotaFiscal(notaFiscalDto.getNumero(), notaFiscalDto.getSerie(), destino, fornecedor,
 				custeio);
-		
-		System.out.println("flag");
 
 		return notaFiscalRepository.save(notaFiscal);
 	}

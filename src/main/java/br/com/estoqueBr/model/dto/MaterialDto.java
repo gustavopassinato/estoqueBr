@@ -1,10 +1,20 @@
 package br.com.estoqueBr.model.dto;
 
 public class MaterialDto {
+	
 	private String nome;
 	private String modelo;
 	private String fabricanteNome;
 	private String unidadeMedidaNome;
+	private String descricao;
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 
 	public String getNome() {
 		return nome;

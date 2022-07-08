@@ -1,4 +1,4 @@
-package br.com.estoqueBr.controller.cadastro;
+package br.com.estoqueBr.controller.entrada;
 
 import java.util.List;
 

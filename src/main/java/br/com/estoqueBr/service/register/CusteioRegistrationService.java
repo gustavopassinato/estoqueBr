@@ -17,7 +17,7 @@ public class CusteioRegistrationService {
 	@Autowired
 	private CusteioRepository custeioRepository;
 
-	public void createCusteio(CusteioDto custeioForm) {
+	public void create(CusteioDto custeioForm) {
 		Custeio custeio = new Custeio(custeioForm.getNome());
 
 		custeioRepository.save(custeio);

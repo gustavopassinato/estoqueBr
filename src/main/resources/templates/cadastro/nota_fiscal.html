@@ -8,7 +8,7 @@
     <section>
         <div class="container">
             <div th:replace="~{com :: baner('Nova nota fiscal')}"></div>
-            <form class="was-validated" th:object="${notaFiscalDto}" th:action="@{/cadastro/entrada/nota_fiscal/nova}" method="post">
+            <form class="was-validated" th:object="${notaFiscalDto}" th:action="@{/cadastro/nota_fiscal/nova}" method="post">
                 <div class="mb-3">
                     <label class="form-label" for="numero">Digite o número desta nota:</label>
                     <input th:field="*{numero}" type="number" class="form-control is-invalid" placeholder="Digite aqui, apenas números" required>
@@ -29,38 +29,76 @@
                     <label class="form-label" for="serie">Escolha o fornecedor:</label>
                     <select th:field="*{nomeFornecedor}" class="form-select is-invalid" aria-label="Selecione um fornecedor específico" required>
                         <option value=""> Escolha </option>
-                        <option th:each="fornecedor : ${todosFornecedores}" 
+                        <option th:each="fornecedor : ${fornecedores}" 
                         th:value="${fornecedor.nome}"
                         th:utext="${fornecedor.nome}">
                         </option>
                     </select>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div class="invalid-feedback">
+                                Este campo é obrigatório!
+                            </div>
+                        </div>
+                        <div>
+                            <a th:href="@{/cadastro/nota_fiscal/redirect/fornecedor}">
+                                <button class="btn btn-primary mt-2" type="button"> Novo fornecedor</button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="serie">Escolha o destino vinculado a esta nota:</label>
                     <select th:field="*{nomeDestino}" class="form-select is-invalid" aria-label="Selecione um fornecedor específico" required>
                         <option value=""> Escolha </option>
-                        <option th:each="destino : ${todosDestinos}" 
+                        <option th:each="destino : ${destinos}" 
                         th:value="${destino.nome}"
                         th:utext="${destino.nome}">
                         </option>
                     </select>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div class="invalid-feedback">
+                                Este campo é obrigatório!
+                            </div>
+                        </div>
+                        <div>
+                            <a th:href="@{/cadastro/nota_fiscal/redirect/destino}">
+                                <button class="btn btn-primary mt-2" type="button"> Novo destino</button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="serie">Escolha o centro de custeio responsável pelo pagamento:</label>
                     <select th:field="*{nomeCusteio}" class="form-select is-invalid" aria-label="Selecione um fornecedor específico" required>
                         <option value=""> Escolha </option>
-                        <option th:each="custeio : ${todosCusteio}" 
+                        <option th:each="custeio : ${custeios}" 
                         th:value="${custeio.nome}"
                         th:utext="${custeio.nome}">
                         </option>
                     </select>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div class="invalid-feedback">
+                                Este campo é obrigatório!
+                            </div>
+                        </div>
+                        <div>
+                            <a th:href="@{/cadastro/nota_fiscal/redirect/custeio}">
+                                <button class="btn btn-primary mt-2" type="button"> Novo custeio</button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="d-flex justify-content-between">
-                    <button class="btn btn-primary mt-2" type="submit">Criar</button>
-                    <button class="btn btn-primary mt-2" type="button" onclick="window.history.go(-1)">Cancelar</button>
+                    <button class="btn btn-primary mt-2" type="submit">Salvar</button>
+                    <a th:href="${onCancelUrl}">
+                        <button class="btn btn-primary mt-2" type="button">Cancelar</button>
+                    </a>
                 </div> 
             </form>
         </div>

@@ -1,5 +1,7 @@
 package br.com.estoqueBr.service.register;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +18,9 @@ public class UnidadeMedidaRegistrationService {
 		UnidadeMedida unidadeMedida = new UnidadeMedida(nome, abreviacao);
 		
 		unidadeMedidaRepository.save(unidadeMedida);
+	}
+
+	public List<UnidadeMedida> procuraTodos() {
+		return unidadeMedidaRepository.findAll();
 	}
 }
