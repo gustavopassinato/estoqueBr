@@ -8,12 +8,12 @@
     <section>
         <div class="container">
             <div th:replace="~{com :: baner('Novo Fornecedor')}"></div>
-            <form th:object="${fornecedorDto}" th:action="@{/cadastro/fornecedor/novo}" method="post">
+            <form class="was-validated" th:object="${fornecedorDto}" th:action="@{/cadastro/fornecedor/novo}" method="post">
                 <div class="mb-3">
                     <label class="form-label" for="nome">Nome</label>
-                    <input th:field="*{nome}" th:errorclass="is-invalid" class="form-control" placeholder="Digite aqui">
-                    <div class="invalid-feedback" th:errors="*{nome}">
-                        Descrição do erro
+                    <input th:field="*{nome}" class="form-control is-invalid" placeholder="Digite aqui" required>
+                    <div class="invalid-feedback">
+                        Este campo é obrigatório!
                     </div>
                 </div>
                 <div class="mb-3">
