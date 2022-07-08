@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head th:replace="~{com :: head('Fabricante')}"></head>
+<body>
+    <header class="mb-2">
+        <div  th:replace="~{com :: logo}"></div>
+    </header>
+    <section>
+        <div class="container">
+            <div th:replace="~{com :: baner('Novo fabricante')}"></div>
+            <form th:object="${fabricanteDto}" th:action="${path}" method="post">
+                <label class="form-label" for="nome">Nome</label>
+                <input th:field="*{nome}" th:errorclass="is-invalid" class="form-control">
+                <div class="invalid-feedback" th:errors="*{nome}">
+                    Descrição do erro
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-primary mt-2" type="submit">Cadastrar</button>
+                    <a th:href="@{/cadastro}">
+                        <button class="btn btn-primary mt-2" type="button">Voltar</button>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

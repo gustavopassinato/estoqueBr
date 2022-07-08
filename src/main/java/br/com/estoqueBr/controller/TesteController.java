@@ -1,4 +1,4 @@
-package br.com.estoqueBr.controler;
+package br.com.estoqueBr.controller;
 
 import javax.servlet.http.HttpSession;
 

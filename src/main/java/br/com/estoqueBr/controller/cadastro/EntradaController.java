@@ -1,12 +1,10 @@
-package br.com.estoqueBr.controler.cadastro;
+package br.com.estoqueBr.controller.cadastro;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-import javax.management.RuntimeErrorException;
 import javax.servlet.http.HttpSession;
 
+import br.com.estoqueBr.model.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,11 +15,6 @@ import br.com.estoqueBr.model.Custeio;
 import br.com.estoqueBr.model.Destino;
 import br.com.estoqueBr.model.Fornecedor;
 import br.com.estoqueBr.model.NotaFiscal;
-import br.com.estoqueBr.model.dto.EntradaDto;
-import br.com.estoqueBr.model.dto.MaterialQuantidadeDto;
-import br.com.estoqueBr.model.dto.NotaFiscalDto;
-import br.com.estoqueBr.model.dto.NotaFiscalFiltroDto;
-import br.com.estoqueBr.model.dto.RegistroQuantidadeMaterialDto;
 import br.com.estoqueBr.service.register.CusteioRegistrationService;
 import br.com.estoqueBr.service.register.DestinoRegistrationService;
 import br.com.estoqueBr.service.register.FornecedorRegistrationService;
@@ -118,8 +111,14 @@ public class EntradaController {
 	}
 	
 	@GetMapping("/cadastro/entrada/material")
-	public String entradaDeMaterial() {
-		return "";
+	public String entradaDeMaterial(HttpSession session, Model model) {
+MaterialDto materialDto = new MaterialDto();
+
+		NotaFiscalDto notaDto = (NotaFiscalDto) session.getAttribute("notaFiscalEntrada");
+		model.addAttribute("notaFiscalDto", notaDto);
+
+
+		return "cadastro/entrada/entrada";
 		
 	}
 

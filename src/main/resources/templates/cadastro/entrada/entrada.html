@@ -10,7 +10,32 @@
     <section>
         <div class="container">
             <div th:replace="~{com :: baner('Nova entrada de material')}"></div>
+            <div>
+                <h5>
+                    Insira os materiais presentes na nota: <span th:text="${notaFiscalDto.numero}"></span>
+                </h5>
+            </div>
+
             <form th:object="${entradaDto}" th:action="@{/cadastro/entrada/novo}" method="post">
+
+                <div class="mb-3">
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <div class="mb-3">
                     <label class="form-label" for="codigoNota">Código da Nota Fiscal</label>
                     <input th:field="*{codigoNota}" th:errorclass="is-invalid" class="form-control"

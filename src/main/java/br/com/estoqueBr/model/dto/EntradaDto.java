@@ -10,7 +10,8 @@ import org.springframework.stereotype.Component;
 @Scope("session")
 public class EntradaDto {
 
-	private List<MaterialQuantidadeDto> materiaisQuantidades = new ArrayList<MaterialQuantidadeDto>();
+	private Integer quantidade;
+	private Long idMaterial;
 	private Long codigoNota;
 
 	public Long getCodigoNota() {
@@ -21,12 +22,19 @@ public class EntradaDto {
 		this.codigoNota = codigoNota;
 	}
 
-	public List<MaterialQuantidadeDto> getMateriaisQuantidades() {
-		return materiaisQuantidades;
+	public Long getIdMaterial() {
+		return idMaterial;
 	}
 
-	public void setMateriaisQuantidades(List<MaterialQuantidadeDto> materiaisQuantidades) {
-		this.materiaisQuantidades = materiaisQuantidades;
+	public void setIdMaterial(Long idMaterial) {
+		this.idMaterial = idMaterial;
 	}
 
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
+	}
 }

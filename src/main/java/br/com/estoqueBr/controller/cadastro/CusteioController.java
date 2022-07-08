@@ -1,9 +1,6 @@
-package br.com.estoqueBr.controler.cadastro;
+package br.com.estoqueBr.controller.cadastro;
 
-import java.util.EnumSet;
 import java.util.Enumeration;
-import java.util.Iterator;
-import java.util.stream.Stream;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;

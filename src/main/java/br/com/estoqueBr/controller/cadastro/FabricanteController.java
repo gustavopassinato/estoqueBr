@@ -1,4 +1,4 @@
-package br.com.estoqueBr.controler.cadastro;
+package br.com.estoqueBr.controller.cadastro;
 
 import javax.validation.Valid;
 

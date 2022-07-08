@@ -1,4 +1,4 @@
-package br.com.estoqueBr.controler;
+package br.com.estoqueBr.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

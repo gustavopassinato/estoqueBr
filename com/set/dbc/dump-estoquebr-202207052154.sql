@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `estoqueBr` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `estoqueBr`;
--- MySQL dump 10.13  Distrib 5.7.35, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.38, for Linux (x86_64)
 --
--- Host: 127.0.0.1    Database: estoquebr
+-- Host: localhost    Database: estoquebr
 -- ------------------------------------------------------
--- Server version	5.7.35-log
+-- Server version	5.7.38
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -97,42 +95,6 @@ LOCK TABLES `entrada` WRITE;
 INSERT INTO `entrada` VALUES (29,40,'2022-06-27 20:10:26',4,5),(30,50,'2022-06-27 20:11:00',4,4),(31,20,'2022-06-28 09:09:26',7,4),(32,20,'2022-06-28 09:14:49',7,3),(33,15,'2022-06-28 09:17:33',7,7);
 /*!40000 ALTER TABLE `entrada` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER Trg_entrada_material AFTER INSERT
-ON `estoqueBr`.`entrada`
-FOR EACH ROW 
-BEGIN 
-	SET @DESTINO_ORIGEM_ID = (SELECT `estoqueBr`.`nota_fiscal`.`id_destino` 
-            FROM `estoqueBr`.`nota_fiscal`
-            WHERE `estoqueBr`.`nota_fiscal`.`id` = NEW.`id_nota`);
-	IF (@DESTINO_ORIGEM_ID IS NOT NULL) THEN 
-		SET @MATERIAL_ID = (SELECT `estoqueBr`.`estoque`.`id` 
-		FROM `estoqueBr`.`estoque` 
-		WHERE `estoqueBr`.`estoque`.`id_material` = NEW.`id_material`
-			AND `estoqueBr`.`estoque`.`id_destino` = @DESTINO_ORIGEM_ID );
-		IF (@MATERIAL_ID IS NOT NULL) THEN
-			UPDATE `estoqueBr`.`estoque` 
-            SET `estoqueBr`.`estoque`.`quantidade` = `estoqueBr`.`estoque`.`quantidade`+ NEW.`quantidade`
-            WHERE `estoqueBr`.`estoque`.`id`= @MATERIAL_ID;
-		ELSE
-			INSERT INTO `estoqueBr`.`estoque` (`estoqueBr`.`estoque`.`id_material`, `estoqueBr`.`estoque`.`id_destino`, `estoqueBr`.`estoque`.`desvio`, `estoqueBr`.`estoque`.`quantidade`)
-			VALUES (NEW.`id_material`, @DESTINO_ORIGEM_ID, 0, NEW.`quantidade`);
-		END IF;
-	END IF;
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `estoque`
@@ -349,42 +311,6 @@ LOCK TABLES `saida` WRITE;
 INSERT INTO `saida` VALUES (5,30,NULL,'2022-06-27 20:11:42',4,3,2,4),(6,30,NULL,'2022-06-27 20:15:49',4,1,3,4),(7,10,NULL,'2022-06-28 09:11:54',7,3,3,4);
 /*!40000 ALTER TABLE `saida` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER Trg_saida_material AFTER INSERT 
-ON `estoqueBr`.`saida`
-FOR EACH ROW 
-BEGIN
-	SET @DESTINO_NOTA_ID = (SELECT `estoqueBr`.`nota_fiscal`.`id_destino` 
-		FROM `estoqueBr`.`nota_fiscal`
-		WHERE `estoqueBr`.`nota_fiscal`.`id` = NEW.`id_nota`);
-    IF (@DESTINO_NOTA_ID != NEW.`id_destino`) THEN
-		SET @EH_DESVIO = 1;
-        INSERT INTO `estoqueBr`.`estoque` (`estoqueBr`.`estoque`.`id_material`, `estoqueBr`.`estoque`.`id_destino`, `estoqueBr`.`estoque`.`desvio`, `estoqueBr`.`estoque`.`quantidade`)
-        VALUES (NEW.`id_material`, NEW.`id_destino`, @EH_DESVIO , -1*NEW.`quantidade`);
-    END IF;
-	
-	SET @MATERIAL_ID = (SELECT `estoqueBr`.`estoque`.`id`  
-		FROM `estoqueBr`.`estoque` 
-		WHERE `estoqueBr`.`estoque`.`id_material` = NEW.`id_material`
-			AND `estoqueBr`.`estoque`.`id_destino` = @DESTINO_NOTA_ID);
-		 
-	UPDATE `estoqueBr`.`estoque` 
-	SET `estoqueBr`.`estoque`.`quantidade` = `estoqueBr`.`estoque`.`quantidade`- NEW.`quantidade`
-    WHERE `estoqueBr`.`estoque`.`id`= @MATERIAL_ID;
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `unidade_medida`
@@ -412,10 +338,6 @@ INSERT INTO `unidade_medida` VALUES (1,'metro','m'),(2,'caixa','cx'),(3,'unidade
 UNLOCK TABLES;
 
 --
--- Dumping events for database 'estoquebr'
---
-
---
 -- Dumping routines for database 'estoquebr'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -428,4 +350,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-05 22:42:55
+-- Dump completed on 2022-07-05 21:54:03
