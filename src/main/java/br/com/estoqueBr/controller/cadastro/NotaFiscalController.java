@@ -33,8 +33,8 @@ public class NotaFiscalController {
 	
 	@GetMapping("/cadastro/nota_fiscal")
 	public String preparaNotaFiscal(NotaFiscalDto notaFiscalDto, HttpSession session, Model model) {
-		String onCancelUrl = (String) session.getAttribute(SessionsConstants.ON_CANCEL_URL.toString());
-		session.removeAttribute(SessionsConstants.ON_CANCEL_URL.toString());
+		String onCancelUrl = (String) session.getAttribute(SessionsConstants.CALL_BACK_URL_ON_CANCELL.toString());
+		session.removeAttribute(SessionsConstants.CALL_BACK_URL_ON_CANCELL.toString());
 		
 		if (onCancelUrl == null) {
 			 onCancelUrl = "/cadastro";
@@ -42,7 +42,7 @@ public class NotaFiscalController {
 
 		model.addAttribute("onCancelUrl", onCancelUrl);
 		
-		session.setAttribute(SessionsConstants.CALL_BACK_URL.toString(), "/cadastro/nota_fiscal");
+		session.setAttribute(SessionsConstants.CALL_BACK_URL_ON_SUBMIT.toString(), "/cadastro/nota_fiscal");
 		
 		List<Fornecedor> fornecedores = fornecedorRegistrationService.procuraTodosFornecedores();
 		List<Destino> destinos = destinoRegistrationService.procuraTodosDestinos();
@@ -60,8 +60,8 @@ public class NotaFiscalController {
 	
 	@PostMapping("/cadastro/nota_fiscal/nova")
 	public String criaNotaFiscal(NotaFiscalDto notaFiscalDto, HttpSession session) {
-		String callBackUrl = (String) session.getAttribute(SessionsConstants.CALL_BACK_URL.toString());
-		session.removeAttribute(SessionsConstants.CALL_BACK_URL.toString());
+		String callBackUrl = (String) session.getAttribute(SessionsConstants.CALL_BACK_URL_ON_SUBMIT.toString());
+		session.removeAttribute(SessionsConstants.CALL_BACK_URL_ON_SUBMIT.toString());
 
 		if (callBackUrl == null) {
 
@@ -75,21 +75,21 @@ public class NotaFiscalController {
 	
 	@GetMapping("/cadastro/nota_fiscal/redirect/fornecedor")
 	public String redirectFornecedor(HttpSession session) {
-		session.setAttribute(SessionsConstants.ON_CANCEL_URL.toString(), "/cadastro/nota_fiscal");
+		session.setAttribute(SessionsConstants.CALL_BACK_URL_ON_CANCELL.toString(), "/cadastro/nota_fiscal");
 		
 		return "redirect:/cadastro/fornecedor";
 	}
 	
 	@GetMapping("/cadastro/nota_fiscal/redirect/destino")
 	public String redirectDestino(HttpSession session) {
-		session.setAttribute(SessionsConstants.ON_CANCEL_URL.toString(), "/cadastro/nota_fiscal");
+		session.setAttribute(SessionsConstants.CALL_BACK_URL_ON_CANCELL.toString(), "/cadastro/nota_fiscal");
 		
 		return "redirect:/cadastro/destino";
 	}
 	
 	@GetMapping("/cadastro/nota_fiscal/redirect/custeio")
 	public String redirectCusteio(HttpSession session) {
-		session.setAttribute(SessionsConstants.ON_CANCEL_URL.toString(), "/cadastro/nota_fiscal");
+		session.setAttribute(SessionsConstants.CALL_BACK_URL_ON_CANCELL.toString(), "/cadastro/nota_fiscal");
 		
 		return "redirect:/cadastro/custeio";
 	}

@@ -14,10 +14,10 @@ public class FabricanteRegistrationService {
 	@Autowired
 	private FabricanteRepository fabricanteRepository;
 	
-	public void create(String fabricanteNome) {
+	public Fabricante create(String fabricanteNome) {
 		Fabricante fabricante = new Fabricante(fabricanteNome);
 		
-		fabricanteRepository.save(fabricante);
+		return fabricanteRepository.save(fabricante);
 	}
 
 	public List<Fabricante> procuraTodos() {

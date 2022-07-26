@@ -36,16 +36,14 @@ public class MaterialController {
 
 	@GetMapping("/cadastro/material")
 	public String materialCadastroHome(MaterialDto materialDto, HttpSession session, Model model) {
-		String onCancelUrl = (String) session.getAttribute(SessionsConstants.ON_CANCEL_URL.toString());
-		session.removeAttribute(SessionsConstants.ON_CANCEL_URL.toString());
-		
+		String onCancelUrl = (String) session.getAttribute(SessionsConstants.CALL_BACK_URL_ON_CANCELL.toString());
+		session.removeAttribute(SessionsConstants.CALL_BACK_URL_ON_CANCELL.toString());
+
 		if (onCancelUrl == null) {
-			 onCancelUrl = "/cadastro";
+			onCancelUrl = "/cadastro";
 		}
 
 		model.addAttribute("onCancelUrl", onCancelUrl);
-		
-		session.setAttribute(SessionsConstants.CALL_BACK_URL.toString(), "/cadastro/material");
 
 		List<Fabricante> fabricantes = fabricanteRegistrationService.procuraTodos();
 
@@ -69,8 +67,8 @@ public class MaterialController {
 		try {
 			materialRegisterService.create(materialDto);
 
-			String callBackUrl = (String) session.getAttribute(SessionsConstants.CALL_BACK_URL.toString());
-			session.removeAttribute(SessionsConstants.CALL_BACK_URL.toString());
+			String callBackUrl = (String) session.getAttribute(SessionsConstants.CALL_BACK_URL_ON_SUBMIT.toString());
+			session.removeAttribute(SessionsConstants.CALL_BACK_URL_ON_SUBMIT.toString());
 
 			if (callBackUrl == null) {
 
@@ -92,11 +90,13 @@ public class MaterialController {
 		}
 
 	}
-	
+
 	@GetMapping("/cadastro/material/redirect/fabricante")
 	public String redirectFabricante(HttpSession session) {
-		session.setAttribute(SessionsConstants.ON_CANCEL_URL.toString(), "/cadastro/material");
-		
+
+		session.setAttribute(SessionsConstants.CALL_BACK_URL_ON_CANCELL.toString(), "/cadastro/material");
+		session.setAttribute(SessionsConstants.CALL_BACK_URL_ON_SUBMIT.toString(), "/cadastro/material");
+
 		return "redirect:/cadastro/fabricante";
 	}
 

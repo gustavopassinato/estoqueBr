@@ -16,35 +16,37 @@ import br.com.estoqueBr.service.register.FabricanteRegistrationService;
 
 @Controller
 public class FabricanteController {
-	
+
 	@Autowired
 	private FabricanteRegistrationService fabricanteRegistrationService;
-	
+
 	@GetMapping("/cadastro/fabricante")
 	public String fabricanteCadastroHome(FabricanteDto fabricanteDto, HttpSession session, Model model) {
-		
-		String onCancelUrl = (String) session.getAttribute(SessionsConstants.ON_CANCEL_URL.toString());
-		session.removeAttribute(SessionsConstants.ON_CANCEL_URL.toString());
-		
+		System.out.println("flag - entrada");
+
+		String onCancelUrl = (String) session.getAttribute(SessionsConstants.CALL_BACK_URL_ON_CANCELL.toString());
+		session.removeAttribute(SessionsConstants.CALL_BACK_URL_ON_CANCELL.toString());
+
 		if (onCancelUrl == null) {
-			 onCancelUrl = "/cadastro";
+			onCancelUrl = "/cadastro";
 		}
 
 		model.addAttribute("onCancelUrl", onCancelUrl);
 
 		return "cadastro/fabricante";
 	}
-	
+
 	@PostMapping("/cadastro/fabricante/novo")
-	public String fabricanteCadastroNovo(@Valid FabricanteDto fabricanteDto, HttpSession session, BindingResult result) {
-		
+	public String fabricanteCadastroNovo(@Valid FabricanteDto fabricanteDto, HttpSession session,
+			BindingResult result) {
+
 		if (result.hasErrors()) {
 			return "cadastro/fabricante";
 		}
-		
+
 		fabricanteRegistrationService.create(fabricanteDto.getNome());
-		
-		String callBackUrl = (String) session.getAttribute(SessionsConstants.CALL_BACK_URL.toString());
+
+		String callBackUrl = (String) session.getAttribute(SessionsConstants.CALL_BACK_URL_ON_SUBMIT.toString());
 
 		if (callBackUrl == null) {
 
@@ -54,5 +56,5 @@ public class FabricanteController {
 		session.setAttribute(SessionsConstants.FABRICANTE_DTO.toString(), fabricanteDto);
 
 		return String.format("redirect:%s", callBackUrl);
-	}	
+	}
 }

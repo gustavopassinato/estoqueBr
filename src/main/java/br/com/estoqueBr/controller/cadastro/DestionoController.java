@@ -22,8 +22,8 @@ public class DestionoController {
 	
 	@GetMapping("/cadastro/destino")
 	public String destinoCadastroHome(DestinoDto destinoDto, HttpSession session, Model model) {
-		String onCancelUrl = (String) session.getAttribute(SessionsConstants.ON_CANCEL_URL.toString());
-		session.removeAttribute(SessionsConstants.ON_CANCEL_URL.toString());
+		String onCancelUrl = (String) session.getAttribute(SessionsConstants.CALL_BACK_URL_ON_CANCELL.toString());
+		session.removeAttribute(SessionsConstants.CALL_BACK_URL_ON_CANCELL.toString());
 		
 		if (onCancelUrl == null) {
 			 onCancelUrl = "/cadastro";
@@ -43,7 +43,7 @@ public class DestionoController {
 		
 		destinoRegistrationService.create(detinoDto);
 		
-		String callBackUrl = (String) session.getAttribute(SessionsConstants.CALL_BACK_URL.toString());
+		String callBackUrl = (String) session.getAttribute(SessionsConstants.CALL_BACK_URL_ON_SUBMIT.toString());
 
 		if (callBackUrl == null) {
 

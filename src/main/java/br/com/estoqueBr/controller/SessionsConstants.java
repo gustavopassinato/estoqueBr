@@ -2,8 +2,8 @@ package br.com.estoqueBr.controller;
 
 public enum SessionsConstants {
 	
-	CALL_BACK_URL,
-	ON_CANCEL_URL,
+	CALL_BACK_URL_ON_SUBMIT,
+	CALL_BACK_URL_ON_CANCELL,
 	CUSTEIO_DTO,
 	DESTINO_DTO,
 	FABRICANTE_DTO,
